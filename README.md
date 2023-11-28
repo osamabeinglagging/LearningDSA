@@ -1,0 +1,1 @@
+On my way to become the best self-taught programmer because I don't study and I'm never gonna get a seat in an uni if i dont.
