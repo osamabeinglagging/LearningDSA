@@ -1,23 +1,31 @@
 package dev.liquid.sort;
 
+import java.util.Comparator;
+
 public class QuickSort {
-    public static void sort(int[] arr){
-        quickSort(arr, 0, arr.length-1);
+    public static <T> void sort(T[] arr, Comparator<T> comp) {
+        quickSort(arr, 0, arr.length - 1, comp);
     }
 
-    static void quickSort(int[] arr, int j, int pivot){
-        if(j > pivot) return;
-        int i = j-1;
+    static <T> void quickSort(T[] arr, int j, int pivot, Comparator<T> comp) {
+        if (j > pivot) return;
+        int i = j - 1;
         int start = j;
 
-        for(; j < pivot; j++){
-            if(arr[j] < arr[pivot]){
+        for (; j < pivot; j++) {
+            if (comp.compare(arr[j], arr[pivot]) < 0) {
                 swap(arr, ++i, j);
             }
         }
         swap(arr, ++i, pivot);
-        quickSort(arr, start, i-1);
-        quickSort(arr, i+1, pivot);
+        quickSort(arr, start, i - 1, comp);
+        quickSort(arr, i + 1, pivot, comp);
+    }
+
+    static <T> void swap(T[] arr, int i, int j) {
+        T temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 
 //    stackoverflow is actually goated - who figured this shit out
@@ -35,9 +43,10 @@ public class QuickSort {
 //    0001
 //    --------------
 //    0010 -> 2 -> i
-    static void swap(int[] arr, int i, int j){
-        arr[i] = arr[i] ^ arr[j];
-        arr[j] = arr[i] ^ arr[j];
-        arr[i] = arr[i] ^ arr[j];
-    }
+//    static void swap(int[] arr, int i, int j){
+//        arr[i] = arr[i] ^ arr[j];
+//        arr[j] = arr[i] ^ arr[j];
+//        arr[i] = arr[i] ^ arr[j];
+//    }
+
 }

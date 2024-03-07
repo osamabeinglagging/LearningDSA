@@ -11,13 +11,15 @@ import java.util.Random;
 public class Main {
   public static void main(String[] args) {
     MinIntHeap heap = new MinIntHeap(10);
-    int[] testData1 = {8, 4, 10, 2, 7, 5, 1, 9, 3, 6};
-//    for(int data: testData1){
-//      heap.add(data);
-//    }
-//    System.out.println(heap);
-    QuickSort.sort(testData1);
-    System.out.println(Arrays.toString(testData1));
+    Integer[] testData1 = {8, 4, 10, 2, 7, 5, 1, 9, 3, 6};
+    int[] arr = generateUnsortedArray(200);
+
+    Integer[] integerArray = new Integer[arr.length];
+    for (int i = 0; i < arr.length; i++) {
+      integerArray[i] = arr[i];
+    }
+    QuickSort.sort(integerArray, Integer::compareTo);
+    System.out.println(Arrays.toString(integerArray));
   }
 
   private static int[] generateUnsortedArray(int size) {
